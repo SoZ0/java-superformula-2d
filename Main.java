@@ -13,8 +13,6 @@ public class Main extends JPanel implements ActionListener {
     private JFrame frame;
     private JSlider resolutionSlider, aSlider, bSlider, mSlider, n1Slider, n2Slider, n3Slider;
 
-    private double resolutionValue, aValue, bValue, mValue, n1Value, n2Value, n3Value;
-
     private final int APPLET_WIDTH = 500;
     private final int APPLET_HEIGHT = 500;
     private final int FREQ = 0;
@@ -81,8 +79,6 @@ public class Main extends JPanel implements ActionListener {
         frame.setResizable(false);
     }
 
-    private long lastTime = System.nanoTime();
-
     @Override
     public void paintComponent(Graphics page){
 
@@ -120,15 +116,6 @@ public class Main extends JPanel implements ActionListener {
         return StrictMath.pow(StrictMath.pow(StrictMath.abs(StrictMath.cos(m * theta / 4d) / a), n2) + StrictMath.pow(StrictMath.abs(StrictMath.sin(m * theta / 4d) / b), n3), -1d/n1);
     }
 
-    public void startShape(){
-
-    }
-
-    public void endShape(){
-        
-    }
-
-
     @Override
     public Dimension getPreferredSize() {
         return new Dimension(APPLET_WIDTH, APPLET_HEIGHT);
@@ -142,19 +129,5 @@ public class Main extends JPanel implements ActionListener {
 
     public double[] polarToCartesianCord(double polarX, double polarY,  float scale){
         return polarToCartesianCord(new double[]{polarX, polarY}, scale);
-    }
-
-    private Point lastPosition = new Point(0,0);
-    public Point mousePosition(){
-        try{
-            double x = getMousePosition().getX();
-            lastPosition.setLocation(x, lastPosition.getY());
-        }catch(NullPointerException ex){}
-
-        try{
-            double y = getMousePosition().getY();
-            lastPosition.setLocation(lastPosition.getX(), y);
-        }catch(NullPointerException ex){}
-       return lastPosition;
     }
 }
